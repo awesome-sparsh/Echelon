@@ -1,0 +1,135 @@
+﻿@model IEnumerable<Echelon.Models.User>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    body {
+        background-color: white; /* White background */
+        color: #333; /* Dark text color for better readability */
+        font-family: Arial, sans-serif; /* Consistent font family */
+    }
+
+    h1 {
+        color: #4682b4; /* Steel blue color for the heading */
+        text-align: center; /* Center the heading text */
+        margin-bottom: 20px; /* Space below the heading */
+    }
+
+    p {
+        text-align: center; /* Center-align the paragraph */
+        margin-top: 20px; /* Space above the paragraph */
+    }
+
+    .table {
+        width: 100%; /* Full width for the table */
+        border-collapse: collapse; /* Collapse borders for a cleaner look */
+        margin: auto; /* Center the table */
+        max-width: 1200px; /* Max width for the table */
+    }
+
+        .table th, .table td {
+            border: 1px solid #ddd; /* Light grey border for table cells */
+            padding: 12px; /* Padding inside table cells */
+            text-align: left; /* Left-align text in table cells */
+        }
+
+        .table th {
+            background-color: #4682b4; /* Steel blue background for table headers */
+            color: white; /* White text color for headers */
+            font-weight: bold; /* Bold text for headers */
+        }
+
+        .table td {
+            background-color: #f9f9f9; /* Light background for table rows */
+        }
+
+        .table tr:nth-child(even) td {
+            background-color: #f2f2f2; /* Alternating row color (light grey) */
+        }
+
+        .table tr:nth-child(even):hover td {
+            background-color: #e6e6e6; /* Lighter grey on hover for alternating rows */
+        }
+
+        .table tr:nth-child(odd):hover td {
+            background-color: #f0f0f0; /* Lighter shade of light grey on hover for odd rows */
+        }
+
+        .table a {
+            color: #4682b4; /* Steel blue color for links */
+            text-decoration: none; /* Remove underline from links */
+            font-weight: bold; /* Bold text for links */
+        }
+
+            .table a:hover {
+                text-decoration: underline; /* Underline links on hover */
+            }
+
+    .btn-create {
+        background-color: #4682b4; /* Steel blue background for the create button */
+        color: white; /* White text color for the button */
+        padding: 10px 20px; /* Padding for better button size */
+        border: none; /* Remove border */
+        border-radius: 4px; /* Rounded corners for the button */
+        text-decoration: none; /* Remove underline from links */
+        font-weight: bold; /* Bold text for emphasis */
+        display: inline-block; /* Inline-block display for alignment */
+    }
+
+        .btn-create:hover {
+            background-color: #87ceeb; /* Light blue background on hover */
+        }
+
+</style>
+
+<h1>Users</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Role)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Uid">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Uid">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Uid">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    <a asp-action="Create" class="btn-create">Create New</a>
+</p>

@@ -1,0 +1,135 @@
+﻿@model Echelon.Models.User
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<style>
+    body {
+        background-color: white; /* White background */
+        color: #333; /* Dark text color for better readability */
+        font-family: Arial, sans-serif;
+    }
+
+    h1 {
+        color: #4682b4; /* Steel blue color for the heading */
+        text-align: center; /* Center the heading text */
+        margin-bottom: 20px; /* Space below the heading */
+    }
+
+    h4 {
+        color: #4682b4; /* Steel blue color for the subheading */
+        margin-bottom: 20px; /* Space below the subheading */
+    }
+
+    .form-container {
+        display: flex;
+        flex-direction: column; /* Stack rows vertically */
+        gap: 20px; /* Space between rows */
+        max-width: 800px; /* Max width for the form container */
+        margin: auto; /* Center the container */
+        padding: 20px;
+        background-color: #fff; /* White background for the form container */
+        border-radius: 8px; /* Rounded corners */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+        .form-group label {
+            font-weight: bold;
+            color: #4682b4; /* Steel blue color for labels */
+        }
+
+    .form-control {
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        background-color: #fff; /* White background for input fields */
+    }
+
+    .btn-primary {
+        background-color: #4682b4; /* Steel blue background for the button */
+        border-color: #4682b4; /* Same color for the border */
+        color: #fff; /* White text color for the button */
+        padding: 10px 20px; /* Padding for better button size */
+        text-decoration: none; /* Remove underline from links */
+        border-radius: 4px; /* Rounded corners for the button */
+    }
+
+        .btn-primary:hover {
+            background-color: #4169e1; /* Royal blue color on hover */
+            border-color: #4169e1;
+        }
+
+    .btn-secondary {
+        background-color: #f0f0f0; /* Light grey background for the secondary button */
+        border-color: #ccc; /* Light grey border */
+        color: #333; /* Dark text color */
+        padding: 10px 20px; /* Padding for better button size */
+        text-decoration: none; /* Remove underline from links */
+        border-radius: 4px; /* Rounded corners for the button */
+    }
+
+        .btn-secondary:hover {
+            background-color: #e0e0e0; /* Slightly darker grey on hover */
+            border-color: #bbb; /* Slightly darker grey border on hover */
+        }
+
+    .form-actions {
+        display: flex;
+        justify-content: center; /* Center-align the buttons */
+        gap: 10px; /* Space between buttons */
+        margin-top: 20px;
+    }
+
+    hr {
+        border: 0;
+        border-top: 1px solid #ccc; /* Light grey line for the horizontal rule */
+    }
+
+    .text-danger {
+        color: #d9534f; /* Bootstrap danger color for validation messages */
+    }
+</style>
+
+<h1>Edit User</h1>
+
+<div class="form-container">
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Uid" />
+        <div class="form-group">
+            <label asp-for="UserName" class="control-label"></label>
+            <input asp-for="UserName" class="form-control" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password" class="control-label"></label>
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Role" class="control-label"></label>
+            <input asp-for="Role" class="form-control" />
+            <span asp-validation-for="Role" class="text-danger"></span>
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="Save" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

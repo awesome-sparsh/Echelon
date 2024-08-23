@@ -1,0 +1,149 @@
+﻿@model Echelon.Models.User
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<style>
+    body {
+        background-color: white; /* White background */
+        color: #333; /* Dark text color for better readability */
+        font-family: Arial, sans-serif; /* Consistent font family */
+    }
+
+    h1 {
+        color: #4682b4; /* Steel blue color for the heading */
+        text-align: center; /* Center the heading text */
+        margin-bottom: 15px; /* Space below the heading */
+    }
+
+    .form-container {
+        display: flex;
+        flex-direction: column; /* Stack rows vertically */
+        gap: 15px; /* Space between rows */
+        max-width: 800px; /* Max width for the form container */
+        margin: auto; /* Center the container */
+        padding: 15px; /* Padding inside the container */
+        background-color: #fff; /* White background for the form container */
+        border-radius: 8px; /* Rounded corners */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    }
+
+    dl {
+        margin: 0; /* Remove default margin */
+    }
+
+    dt, dd {
+        margin: 0; /* Remove default margin */
+        padding: 0; /* Remove default padding */
+    }
+
+    dt {
+        font-weight: bold;
+        color: #4682b4; /* Steel blue color for labels */
+        margin-bottom: 2px; /* Reduced space below labels */
+        display: inline-block; /* Ensure labels are inline with data */
+        width: 150px; /* Fixed width for labels */
+    }
+
+    dd {
+        background-color: #f9f9f9; /* Light background for values */
+        padding: 8px; /* Padding for values */
+        border-radius: 4px; /* Rounded corners for values */
+        margin-bottom: 10px; /* Space below values */
+        display: inline-block; /* Ensure values are inline with labels */
+        width: calc(100% - 160px); /* Adjust width to align with labels */
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: center; /* Center-align the buttons */
+        gap: 15px; /* Space between buttons */
+        margin-top: 15px; /* Space above the action buttons */
+    }
+
+    .btn-danger {
+        background-color: #e74c3c; /* Vibrant red for the delete button */
+        border-color: #e74c3c; /* Same color for the border */
+        color: #fff; /* White text color for the button */
+        padding: 8px 16px; /* Padding for better button size */
+        text-decoration: none; /* Remove underline from links */
+        border-radius: 4px; /* Rounded corners for the button */
+        font-weight: bold; /* Bold text for emphasis */
+    }
+
+        .btn-danger:hover {
+            background-color: #c0392b; /* Darker red on hover */
+            border-color: #c0392b; /* Same color for border on hover */
+        }
+
+    .btn-secondary {
+        background-color: #f0f0f0; /* Light grey background for the secondary button */
+        border-color: #ccc; /* Light grey border */
+        color: #333; /* Dark text color */
+        padding: 8px 16px; /* Padding for better button size */
+        text-decoration: none; /* Remove underline from links */
+        border-radius: 4px; /* Rounded corners for the button */
+        font-weight: bold; /* Bold text for emphasis */
+    }
+
+        .btn-secondary:hover {
+            background-color: #e0e0e0; /* Slightly darker grey on hover */
+            border-color: #bbb; /* Slightly darker grey border on hover */
+        }
+
+    hr {
+        border: 0;
+        border-top: 1px solid #ccc; /* Light grey line for the horizontal rule */
+    }
+</style>
+
+<h1>Delete User</h1>
+
+<div class="form-container">
+    <dl class="row">
+        <!-- Username Section -->
+        <div>
+            <dt>
+                @Html.DisplayNameFor(model => model.UserName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UserName)
+            </dd>
+        </div>
+
+        <!-- Password Section -->
+        <div>
+            <dt>
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+        </div>
+
+        <!-- Other Sections -->
+        <div>
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+        </div>
+        <div>
+            <dt>
+                @Html.DisplayNameFor(model => model.Role)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Role)
+            </dd>
+        </div>
+    </dl>
+
+    <form asp-action="Delete" class="form-actions">
+        <input type="hidden" asp-for="Uid" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </form>
+</div>
