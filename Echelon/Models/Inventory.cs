@@ -7,15 +7,15 @@ public partial class Inventory
 {
     public int Id { get; set; }
 
-    public int? SerialNo { get; set; }
+    public string? SerialNo { get; set; }
 
     public string? ProductName { get; set; }
 
-    public int? CostPrice { get; set; }
+    public string? ManufacturerCode { get; set; }
 
-    public int? SellPrice { get; set; }
+    public int? Quantity { get; set; }
 
-    public int? Discount { get; set; }
+    public string? PurchaseFrom { get; set; }
 
-    public int? Profit { get; set; }
+    public int? PurchasePrice { get; set; }
 }

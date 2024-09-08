@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Echelon.Models.Inventory>
+﻿@model IEnumerable<Echelon.Models.ProductMaster>
 
 @{
     ViewData["Title"] = "Index";
@@ -84,28 +84,25 @@
 
 </style>
 
-<h1>Inventory</h1>
+<h1>Products</h1>
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                Serial No
+                Manufacturer Code
             </th>
             <th>
                 Product Name
             </th>
             <th>
-                Manufacturer Code
-            </th>
-            <th>
-                Quantity
-            </th>
-            <th>
-                Purchase From
+                Specifications
             </th>
             <th>
                 Purchase Price
+            </th>
+            <th>
+                List Price
             </th>
             <th>Actions</th>
         </tr>
@@ -115,27 +112,24 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.SerialNo)
+                    @Html.DisplayFor(modelItem => item.ManufacturerCode)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ProductName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ManufacturerCode)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Quantity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PurchaseFrom)
+                    @Html.DisplayFor(modelItem => item.Specifications)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PurchasePrice)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    @Html.DisplayFor(modelItem => item.ListPrice)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
                 </td>
             </tr>
         }

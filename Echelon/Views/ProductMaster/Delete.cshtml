@@ -1,4 +1,4 @@
-﻿@model Echelon.Models.Inventory
+﻿@model Echelon.Models.ProductMaster
 
 @{
     ViewData["Title"] = "Delete";
@@ -98,17 +98,17 @@
     }
 </style>
 
-<h1>Delete Inventory</h1>
+<h1>Delete User</h1>
 
 <div class="form-container">
     <dl class="row">
-       
+
         <div>
             <dt>
-                Serial No
+                Manufacturer Code
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.SerialNo)
+                @Html.DisplayFor(model => model.ManufacturerCode)
             </dd>
         </div>
 
@@ -123,26 +123,10 @@
 
         <div>
             <dt>
-                Manufacturer Code
+                Specifications
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.ManufacturerCode)
-            </dd>
-        </div>
-        <div>
-            <dt>
-                Quantity
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Quantity)
-            </dd>
-        </div>
-        <div>
-            <dt>
-                Purchase From
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.PurchaseFrom)
+                @Html.DisplayFor(model => model.Specifications)
             </dd>
         </div>
         <div>
@@ -153,10 +137,18 @@
                 @Html.DisplayFor(model => model.PurchasePrice)
             </dd>
         </div>
+        <div>
+            <dt>
+                List Price
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ListPrice)
+            </dd>
+        </div>
     </dl>
 
     <form asp-action="Delete" class="form-actions">
-        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="ProductId" />
         <input type="submit" value="Delete" class="btn btn-danger" />
         <a asp-action="Index" class="btn btn-secondary">Back to List</a>
     </form>

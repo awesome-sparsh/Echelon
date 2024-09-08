@@ -1,29 +1,34 @@
-﻿@model Echelon.Models.Inventory
+﻿@model Echelon.Models.ProductMaster
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Details";
 }
 
 <style>
     body {
         background-color: white; /* White background */
         color: #333; /* Dark text color for better readability */
-        font-family: Arial, sans-serif; /* Consistent font family */
+        font-family: Arial, sans-serif;
     }
 
     h1 {
         color: #4682b4; /* Steel blue color for the heading */
         text-align: center; /* Center the heading text */
-        margin-bottom: 15px; /* Space below the heading */
+        margin-bottom: 20px; /* Space below the heading */
+    }
+
+    h4 {
+        color: #4682b4; /* Steel blue color for the subheading */
+        margin-bottom: 20px; /* Space below the subheading */
     }
 
     .form-container {
         display: flex;
         flex-direction: column; /* Stack rows vertically */
-        gap: 15px; /* Space between rows */
+        gap: 20px; /* Space between rows */
         max-width: 800px; /* Max width for the form container */
         margin: auto; /* Center the container */
-        padding: 15px; /* Padding inside the container */
+        padding: 20px;
         background-color: #fff; /* White background for the form container */
         border-radius: 8px; /* Rounded corners */
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
@@ -41,50 +46,27 @@
     dt {
         font-weight: bold;
         color: #4682b4; /* Steel blue color for labels */
-        margin-bottom: 2px; /* Reduced space below labels */
+        margin-bottom: 5px; /* Reduced space below the label */
         display: inline-block; /* Ensure labels are inline with data */
         width: 150px; /* Fixed width for labels */
     }
 
     dd {
         background-color: #f9f9f9; /* Light background for values */
-        padding: 8px; /* Padding for values */
+        padding: 10px;
         border-radius: 4px; /* Rounded corners for values */
-        margin-bottom: 10px; /* Space below values */
+        margin-bottom: 20px; /* Space below each value */
         display: inline-block; /* Ensure values are inline with labels */
         width: calc(100% - 160px); /* Adjust width to align with labels */
     }
-
-    .form-actions {
-        display: flex;
-        justify-content: center; /* Center-align the buttons */
-        gap: 15px; /* Space between buttons */
-        margin-top: 15px; /* Space above the action buttons */
-    }
-
-    .btn-danger {
-        background-color: #e74c3c; /* Vibrant red for the delete button */
-        border-color: #e74c3c; /* Same color for the border */
-        color: #fff; /* White text color for the button */
-        padding: 8px 16px; /* Padding for better button size */
-        text-decoration: none; /* Remove underline from links */
-        border-radius: 4px; /* Rounded corners for the button */
-        font-weight: bold; /* Bold text for emphasis */
-    }
-
-        .btn-danger:hover {
-            background-color: #c0392b; /* Darker red on hover */
-            border-color: #c0392b; /* Same color for border on hover */
-        }
 
     .btn-secondary {
         background-color: #f0f0f0; /* Light grey background for the secondary button */
         border-color: #ccc; /* Light grey border */
         color: #333; /* Dark text color */
-        padding: 8px 16px; /* Padding for better button size */
+        padding: 10px 20px; /* Padding for better button size */
         text-decoration: none; /* Remove underline from links */
         border-radius: 4px; /* Rounded corners for the button */
-        font-weight: bold; /* Bold text for emphasis */
     }
 
         .btn-secondary:hover {
@@ -92,35 +74,41 @@
             border-color: #bbb; /* Slightly darker grey border on hover */
         }
 
+    .btn-edit {
+        background-color: #28a745; /* Green background for the edit button */
+        border-color: #28a745; /* Same color for the border */
+        color: #fff; /* White text color for the button */
+        padding: 10px 20px; /* Padding for better button size */
+        text-decoration: none; /* Remove underline from links */
+        border-radius: 4px; /* Rounded corners for the button */
+    }
+
+        .btn-edit:hover {
+            background-color: #218838; /* Darker green on hover */
+            border-color: #1e7e34; /* Darker green border on hover */
+        }
+
+    .form-actions {
+        display: flex;
+        justify-content: center; /* Center-align the buttons */
+        gap: 10px; /* Space between buttons */
+        margin-top: 20px;
+    }
+
     hr {
         border: 0;
         border-top: 1px solid #ccc; /* Light grey line for the horizontal rule */
     }
+
+    .text-danger {
+        color: #d9534f; /* Bootstrap danger color for validation messages */
+    }
 </style>
 
-<h1>Delete Inventory</h1>
+<h1>Product Details</h1>
 
 <div class="form-container">
-    <dl class="row">
-       
-        <div>
-            <dt>
-                Serial No
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.SerialNo)
-            </dd>
-        </div>
-
-        <div>
-            <dt>
-                Product Name
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.ProductName)
-            </dd>
-        </div>
-
+    <dl>
         <div>
             <dt>
                 Manufacturer Code
@@ -131,18 +119,18 @@
         </div>
         <div>
             <dt>
-                Quantity
+                Product Name
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.Quantity)
+                @Html.DisplayFor(model => model.ProductName)
             </dd>
         </div>
         <div>
             <dt>
-                Purchase From
+                Specifications
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.PurchaseFrom)
+                @Html.DisplayFor(model => model.Specifications)
             </dd>
         </div>
         <div>
@@ -153,11 +141,18 @@
                 @Html.DisplayFor(model => model.PurchasePrice)
             </dd>
         </div>
+        <div>
+            <dt>
+                List Price
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ListPrice)
+            </dd>
+        </div>
     </dl>
+</div>
 
-    <form asp-action="Delete" class="form-actions">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" />
-        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-    </form>
+<div class="form-actions">
+    <a asp-action="Edit" asp-route-id="@Model?.ProductId" class="btn btn-edit">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
 </div>

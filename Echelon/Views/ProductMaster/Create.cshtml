@@ -1,4 +1,4 @@
-﻿@model Echelon.Models.Inventory
+﻿@model Echelon.Models.ProductMaster
 
 @{
     ViewData["Title"] = "Create";
@@ -88,23 +88,11 @@
 <div class="card-container">
     <div class="card">
         <div class="card-header">
-            Create Inventory
+            Create Product
         </div>
         <div class="card-body">
             <form asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-                <div class="form-group">
-                    <label asp-for="SerialNo" class="control-label">Serial No</label>
-                    <input asp-for="SerialNo" class="form-control" />
-                    <span asp-validation-for="SerialNo" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <label  class="control-label">Product Name</label>
-                    <input asp-for="ProductName" class="form-control" />
-                    <span asp-validation-for="ProductName" class="text-danger"></span>
-                </div>
 
                 <div class="form-group">
                     <label asp-for="ManufacturerCode" class="control-label">Manufacturer Code</label>
@@ -113,21 +101,27 @@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Quantity" class="control-label">Quantity</label>
-                    <input asp-for="Quantity" class="form-control" />
-                    <span asp-validation-for="Quantity" class="text-danger"></span>
+                    <label asp-for="ProductName" class="control-label">Product Name</label>
+                    <input asp-for="ProductName" class="form-control" />
+                    <span asp-validation-for="ProductName" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="PurchaseFrom" class="control-label">Purchase From</label>
-                    <input asp-for="PurchaseFrom" class="form-control" />
-                    <span asp-validation-for="PurchaseFrom" class="text-danger"></span>
+                    <label asp-for="Specifications" class="control-label">Specifications</label>
+                    <input asp-for="Specifications" class="form-control" />
+                    <span asp-validation-for="Specifications" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
                     <label asp-for="PurchasePrice" class="control-label">Purchase Price</label>
                     <input asp-for="PurchasePrice" class="form-control" />
                     <span asp-validation-for="PurchasePrice" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ListPrice" class="control-label">List Price</label>
+                    <input asp-for="ListPrice" class="form-control" />
+                    <span asp-validation-for="ListPrice" class="text-danger"></span>
                 </div>
 
                 <div class="form-actions">

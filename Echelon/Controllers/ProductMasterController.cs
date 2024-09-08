@@ -9,23 +9,22 @@ using Echelon.Models;
 
 namespace Echelon.Controllers
 {
-    public class InventoryController : Controller
+    public class ProductMasterController : Controller
     {
         private readonly EchelonContext _context;
 
-        public InventoryController(EchelonContext context)
+        public ProductMasterController(EchelonContext context)
         {
             _context = context;
         }
 
-        // GET: Inventory
-
+        // GET: ProductMaster
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Inventories.ToListAsync());
+            return View(await _context.ProductMasters.ToListAsync());
         }
 
-        // GET: Inventory/Details/5
+        // GET: ProductMaster/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +32,39 @@ namespace Echelon.Controllers
                 return NotFound();
             }
 
-            var inventory = await _context.Inventories
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (inventory == null)
+            var productMaster = await _context.ProductMasters
+                .FirstOrDefaultAsync(m => m.ProductId == id);
+            if (productMaster == null)
             {
                 return NotFound();
             }
 
-            return View(inventory);
+            return View(productMaster);
         }
 
-        // GET: Inventory/Create
+        // GET: ProductMaster/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Inventory/Create
+        // POST: ProductMaster/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,SerialNo,ProductName,ManufacturerCode,Quantity,PurchaseFrom,PurchasePrice")] Inventory inventory)
+        public async Task<IActionResult> Create([Bind("ProductId,ManufacturerCode,ProductName,Specifications,PurchasePrice,ListPrice")] ProductMaster productMaster)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(inventory);
+                _context.Add(productMaster);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(inventory);
+            return View(productMaster);
         }
 
-        // GET: Inventory/Edit/5
+        // GET: ProductMaster/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +72,22 @@ namespace Echelon.Controllers
                 return NotFound();
             }
 
-            var inventory = await _context.Inventories.FindAsync(id);
-            if (inventory == null)
+            var productMaster = await _context.ProductMasters.FindAsync(id);
+            if (productMaster == null)
             {
                 return NotFound();
             }
-            return View(inventory);
+            return View(productMaster);
         }
 
-        // POST: Inventory/Edit/5
+        // POST: ProductMaster/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,SerialNo,ProductName,ManufacturerCode,Quantity,PurchaseFrom,PurchasePrice")] Inventory inventory)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,ManufacturerCode,ProductName,Specifications,PurchasePrice,ListPrice")] ProductMaster productMaster)
         {
-            if (id != inventory.Id)
+            if (id != productMaster.ProductId)
             {
                 return NotFound();
             }
@@ -97,12 +96,12 @@ namespace Echelon.Controllers
             {
                 try
                 {
-                    _context.Update(inventory);
+                    _context.Update(productMaster);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!InventoryExists(inventory.Id))
+                    if (!ProductMasterExists(productMaster.ProductId))
                     {
                         return NotFound();
                     }
@@ -113,10 +112,10 @@ namespace Echelon.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(inventory);
+            return View(productMaster);
         }
 
-        // GET: Inventory/Delete/5
+        // GET: ProductMaster/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,38 +123,34 @@ namespace Echelon.Controllers
                 return NotFound();
             }
 
-            var inventory = await _context.Inventories
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (inventory == null)
+            var productMaster = await _context.ProductMasters
+                .FirstOrDefaultAsync(m => m.ProductId == id);
+            if (productMaster == null)
             {
                 return NotFound();
             }
 
-            return View(inventory);
+            return View(productMaster);
         }
 
-        public IActionResult ErrorView()
-        {
-            return View();
-        }
-        // POST: Inventory/Delete/5
+        // POST: ProductMaster/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var inventory = await _context.Inventories.FindAsync(id);
-            if (inventory != null)
+            var productMaster = await _context.ProductMasters.FindAsync(id);
+            if (productMaster != null)
             {
-                _context.Inventories.Remove(inventory);
+                _context.ProductMasters.Remove(productMaster);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool InventoryExists(int id)
+        private bool ProductMasterExists(int id)
         {
-            return _context.Inventories.Any(e => e.Id == id);
+            return _context.ProductMasters.Any(e => e.ProductId == id);
         }
     }
 }

@@ -89,6 +89,30 @@
             color: #4682b4; /* Steel blue color used in other pages */
             font-weight: bold; /* Make the text bold */
         }
+
+        /* Active link style for regular nav items */
+        .active-link {
+    background-color: #4682b4; /* Light blue background */
+    color: white !important; /* White text */
+    border-radius: 8px; /* Curved border */
+    padding: 5px 10px; /* Add some padding for better spacing */
+}
+
+.active-dropdown-item {
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    background-color: #e0f0ff; /* Light blue background for the dropdown item */
+    color: #4682b4 !important; /* Steel blue color for text */
+    border-radius: 8px; /* Curved border */
+    padding: 5px 10px; /* Add padding to dropdown item */
+}
+
+.active-parent {
+    background-color: #4682b4; /* Light blue background */
+    color: white !important; /* White text */
+    border-radius: 8px; /* Curved border for parent item */
+    padding: 5px 10px; /* Add padding for better spacing */
+}
+
     </style>
 </head>
 <body>
@@ -108,6 +132,20 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Inventory" asp-action="Index">Inventory</a>
                         </li>
+                        <!-- Masters Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="mastersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Masters
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="mastersDropdown">
+                                <li>
+                                    <a class="dropdown-item" asp-area="" asp-controller="ProductMaster" asp-action="Index">Product Master</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Another Master</a> <!-- You can add more items here -->
+                                </li>
+                            </ul>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
@@ -116,6 +154,7 @@
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -130,6 +169,41 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+        const dropdownItems = document.querySelectorAll('.dropdown-item');
+
+        // Get the current URL path
+        const currentPath = window.location.pathname;
+
+        // Check regular nav links
+        navLinks.forEach(link => {
+            const linkPath = link.getAttribute('href');
+
+            // Check if the current path contains the link's path (partial match)
+            if (currentPath.startsWith(linkPath)) {
+                link.classList.add('active-link');
+            }
+        });
+
+        // Check dropdown items
+        dropdownItems.forEach(item => {
+            const itemPath = item.getAttribute('href');
+
+            // Check if the current path contains the item's path (partial match)
+            if (currentPath.startsWith(itemPath)) {
+                // Add active class to the specific dropdown item
+                item.classList.add('active-dropdown-item');
+
+                // Add active class to the parent dropdown (Masters)
+                const parentDropdown = item.closest('.nav-item.dropdown').querySelector('.nav-link');
+                parentDropdown.classList.add('active-parent');
+            }
+        });
+    });
+</script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -105,13 +105,13 @@
     }
 </style>
 
-<h1>User Details</h1>
+<h1>Inventory Details</h1>
 
 <div class="form-container">
     <dl>
         <div>
             <dt>
-                @Html.DisplayNameFor(model => model.SerialNo)
+                Serial No
             </dt>
             <dd>
                 @Html.DisplayFor(model => model.SerialNo)
@@ -119,7 +119,7 @@
         </div>
         <div>
             <dt>
-                @Html.DisplayNameFor(model => model.ProductName)
+                Product Name
             </dt>
             <dd>
                 @Html.DisplayFor(model => model.ProductName)
@@ -127,34 +127,34 @@
         </div>
         <div>
             <dt>
-                @Html.DisplayNameFor(model => model.CostPrice)
+                Manufacturer Code
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.CostPrice)
+                @Html.DisplayFor(model => model.ManufacturerCode)
             </dd>
         </div>
         <div>
             <dt>
-                @Html.DisplayNameFor(model => model.SellPrice)
+                Quantity
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.SellPrice)
+                @Html.DisplayFor(model => model.Quantity)
             </dd>
         </div>
         <div>
             <dt>
-                @Html.DisplayNameFor(model => model.Discount)
+                Purchase From
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.Discount)
+                @Html.DisplayFor(model => model.PurchaseFrom)
             </dd>
         </div>
         <div>
             <dt>
-                @Html.DisplayNameFor(model => model.Profit)
+                Purchase Price
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.Profit)
+                @Html.DisplayFor(model => model.PurchasePrice)
             </dd>
         </div>
     </dl>

@@ -1,4 +1,4 @@
-﻿@model Echelon.Models.Inventory
+﻿@model Echelon.Models.ProductMaster
 
 @{
     ViewData["Title"] = "Edit";
@@ -96,16 +96,16 @@
     }
 </style>
 
-<h1>Edit Inventory</h1>
+<h1>Edit Product</h1>
 
 <div class="form-container">
     <form asp-action="Edit">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="ProductId" />
         <div class="form-group">
-            <label asp-for="SerialNo" class="control-label">Serial No</label>
-            <input asp-for="SerialNo" class="form-control" />
-            <span asp-validation-for="SerialNo" class="text-danger"></span>
+            <label asp-for="ManufacturerCode" class="control-label">Manufacturer Code</label>
+            <input asp-for="ManufacturerCode" class="form-control" />
+            <span asp-validation-for="ManufacturerCode" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label asp-for="ProductName" class="control-label">Product Name</label>
@@ -113,24 +113,19 @@
             <span asp-validation-for="ProductName" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="ManufacturerCode" class="control-label">Manufacturer Code</label>
-            <input asp-for="ManufacturerCode" class="form-control" />
-            <span asp-validation-for="ManufacturerCode" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Quantity" class="control-label">Quantity</label>
-            <input asp-for="Quantity" class="form-control" />
-            <span asp-validation-for="Quantity" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="PurchaseFrom" class="control-label">Purchase From</label>
-            <input asp-for="PurchaseFrom" class="form-control" />
-            <span asp-validation-for="PurchaseFrom" class="text-danger"></span>
+            <label asp-for="Specifications" class="control-label">Specifications</label>
+            <input asp-for="Specifications" class="form-control" />
+            <span asp-validation-for="Specifications" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label asp-for="PurchasePrice" class="control-label">Purchase Price</label>
             <input asp-for="PurchasePrice" class="form-control" />
             <span asp-validation-for="PurchasePrice" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ListPrice" class="control-label">List Price</label>
+            <input asp-for="ListPrice" class="form-control" />
+            <span asp-validation-for="ListPrice" class="text-danger"></span>
         </div>
         <div class="form-actions">
             <input type="submit" value="Save" class="btn btn-primary" />
